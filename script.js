@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const calculateBtn = document.getElementById('calculate-btn');
     const resultDiv = document.getElementById('result');
 
-    // Updated grade point values (A-F with 5-0 scale)
+
     const gradePoints = {
         'A': 5,
         'B': 4,
