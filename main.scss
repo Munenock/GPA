@@ -1,0 +1,303 @@
+// Variables
+$primary-color: #3498db;
+$secondary-color: #2ecc71;
+$dark-color: #2c3e50;
+$light-color: #ecf0f1;
+$error-color: #e74c3c;
+
+// Breakpoints
+$breakpoint-mobile: 480px;
+$breakpoint-tablet: 768px;
+$breakpoint-desktop: 1024px;
+
+// Mixins
+@mixin flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin card-style {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+// Base Styles
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: $light-color;
+    color: $dark-color;
+    margin: 0;
+    padding: 20px;
+    line-height: 1.6;
+    min-height: 100vh;
+    
+    @media (max-width: $breakpoint-mobile) {
+        padding: 10px;
+    }
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    
+    @media (max-width: $breakpoint-mobile) {
+        padding: 10px;
+    }
+}
+
+h1 {
+    color: $primary-color;
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2.5rem;
+    
+    @media (max-width: $breakpoint-tablet) {
+        font-size: 2rem;
+        margin-bottom: 20px;
+    }
+    
+    @media (max-width: $breakpoint-mobile) {
+        font-size: 1.8rem;
+    }
+}
+
+// Input Section
+.input-section {
+    @include card-style;
+    
+    label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: bold;
+        font-size: 1.1rem;
+        
+        @media (max-width: $breakpoint-mobile) {
+            font-size: 1rem;
+        }
+    }
+    
+    input {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+        margin-bottom: 15px;
+        font-size: 1rem;
+        
+        @media (max-width: $breakpoint-mobile) {
+            padding: 10px;
+        }
+    }
+    
+    button {
+        background-color: $primary-color;
+        color: white;
+        border: none;
+        padding: 12px 15px;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 1rem;
+        width: 100%;
+        transition: all 0.3s ease;
+        
+        &:hover {
+            background-color: darken($primary-color, 10%);
+            transform: translateY(-2px);
+        }
+        
+        &:active {
+            transform: translateY(0);
+        }
+        
+        @media (max-width: $breakpoint-mobile) {
+            padding: 10px;
+        }
+    }
+}
+
+// Courses Form
+.courses-form {
+    @include card-style;
+    display: none;
+    
+    .course-input {
+        margin-bottom: 20px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid #eee;
+        
+        &:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        h3 {
+            margin-top: 0;
+            color: $dark-color;
+            font-size: 1.3rem;
+            
+            @media (max-width: $breakpoint-mobile) {
+                font-size: 1.1rem;
+            }
+        }
+        
+        .input-group {
+            display: flex;
+            gap: 20px;
+            
+            @media (max-width: $breakpoint-tablet) {
+                gap: 15px;
+            }
+            
+            @media (max-width: $breakpoint-mobile) {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+        
+        .form-control {
+            flex: 1;
+            
+            label {
+                display: block;
+                margin-bottom: 8px;
+                font-size: 0.95rem;
+                
+                @media (max-width: $breakpoint-mobile) {
+                    margin-bottom: 5px;
+                }
+            }
+            
+            input, select {
+                width: 100%;
+                padding: 10px;
+                border: 1px solid #ddd;
+                border-radius: 6px;
+                font-size: 1rem;
+                transition: border-color 0.3s;
+                
+                &:focus {
+                    border-color: $primary-color;
+                    outline: none;
+                }
+                
+                @media (max-width: $breakpoint-mobile) {
+                    padding: 8px;
+                }
+            }
+            
+            select {
+                appearance: none;
+                background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+                background-repeat: no-repeat;
+                background-position: right 10px center;
+                background-size: 1em;
+            }
+        }
+    }
+}
+
+// Calculate Button
+.calculate-btn {
+    display: none;
+    background-color: $secondary-color;
+    color: white;
+    border: none;
+    padding: 15px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    width: 100%;
+    margin: 25px 0;
+    transition: all 0.3s ease;
+    
+    &:hover {
+        background-color: darken($secondary-color, 10%);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    &:active {
+        transform: translateY(0);
+    }
+    
+    @media (max-width: $breakpoint-mobile) {
+        padding: 12px;
+        font-size: 1rem;
+    }
+}
+
+// Result Section
+.result {
+    @include card-style;
+    display: none;
+    text-align: center;
+    animation: fadeIn 0.5s ease-out;
+    
+    h2 {
+        margin-top: 0;
+        color: $dark-color;
+        font-size: 1.5rem;
+        
+        @media (max-width: $breakpoint-mobile) {
+            font-size: 1.3rem;
+        }
+    }
+    
+    .gpa-value {
+        font-size: 3.5rem;
+        font-weight: bold;
+        color: $primary-color;
+        margin: 20px 0;
+        animation: bounce 0.5s ease;
+        
+        @media (max-width: $breakpoint-tablet) {
+            font-size: 3rem;
+        }
+        
+        @media (max-width: $breakpoint-mobile) {
+            font-size: 2.5rem;
+        }
+    }
+    
+    .grade-info {
+        font-size: 1.2rem;
+        color: $dark-color;
+        margin-bottom: 10px;
+        
+        @media (max-width: $breakpoint-mobile) {
+            font-size: 1.1rem;
+        }
+    }
+}
+
+// Animations
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes bounce {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+// Utility classes
+.hidden-mobile {
+    @media (max-width: $breakpoint-mobile) {
+        display: none !important;
+    }
+}
+
+.visible-mobile {
+    display: none !important;
+    
+    @media (max-width: $breakpoint-mobile) {
+        display: block !important;
+    }
+}
