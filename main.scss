@@ -1,14 +1,15 @@
-// Variables
-$primary-color: #3498db;
-$secondary-color: #2ecc71;
-$dark-color: #2c3e50;
-$light-color: #ecf0f1;
-$error-color: #e74c3c;
+// Variables - Sophisticated Color Palette
+$primary-color: #2c3e50;         // Deep navy
+$secondary-color: #3498db;       // Rich blue
+$accent-color: #e74c3c;          // Elegant red
+$light-color: #f9f9f9;           // Off-white
+$text-color: #333;               // Dark gray
+$border-color: #e0e0e0;          // Subtle border
+$shadow-color: rgba(0, 0, 0, 0.08);
 
-// Breakpoints
-$breakpoint-mobile: 480px;
-$breakpoint-tablet: 768px;
-$breakpoint-desktop: 1024px;
+// Gradients
+$primary-gradient: linear-gradient(135deg, $primary-color 0%, darken($primary-color, 10%) 100%);
+$secondary-gradient: linear-gradient(135deg, $secondary-color 0%, darken($secondary-color, 10%) 100%);
 
 // Mixins
 @mixin flex-center {
@@ -19,50 +20,74 @@ $breakpoint-desktop: 1024px;
 
 @mixin card-style {
     background: white;
+    border-radius: 12px;
+    box-shadow: 0 8px 30px $shadow-color;
+    padding: 30px;
+    margin-bottom: 30px;
+    border: 1px solid $border-color;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    
+    &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
+    }
+}
+
+@mixin elegant-button {
+    border: none;
     border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    margin-bottom: 20px;
+    padding: 14px 24px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    
+    &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+    
+    &:active {
+        transform: translateY(0);
+    }
 }
 
 // Base Styles
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Roboto', 'Helvetica Neue', Arial, sans-serif;
     background-color: $light-color;
-    color: $dark-color;
+    color: $text-color;
     margin: 0;
-    padding: 20px;
-    line-height: 1.6;
-    min-height: 100vh;
-    
-    @media (max-width: $breakpoint-mobile) {
-        padding: 10px;
-    }
+    padding: 0;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 .container {
     max-width: 800px;
     margin: 0 auto;
-    padding: 20px;
-    
-    @media (max-width: $breakpoint-mobile) {
-        padding: 10px;
-    }
+    padding: 40px 20px;
 }
 
 h1 {
     color: $primary-color;
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 40px;
+    font-weight: 300;
     font-size: 2.5rem;
+    letter-spacing: 1px;
+    position: relative;
     
-    @media (max-width: $breakpoint-tablet) {
-        font-size: 2rem;
-        margin-bottom: 20px;
-    }
-    
-    @media (max-width: $breakpoint-mobile) {
-        font-size: 1.8rem;
+    &:after {
+        content: '';
+        display: block;
+        width: 80px;
+        height: 3px;
+        background: $secondary-color;
+        margin: 20px auto 0;
     }
 }
 
@@ -72,51 +97,34 @@ h1 {
     
     label {
         display: block;
-        margin-bottom: 8px;
-        font-weight: bold;
-        font-size: 1.1rem;
-        
-        @media (max-width: $breakpoint-mobile) {
-            font-size: 1rem;
-        }
+        margin-bottom: 12px;
+        font-weight: 500;
+        color: lighten($text-color, 20%);
+        font-size: 15px;
     }
     
     input {
         width: 100%;
-        padding: 12px;
-        border: 1px solid #ddd;
+        padding: 14px;
+        border: 1px solid $border-color;
         border-radius: 6px;
-        margin-bottom: 15px;
-        font-size: 1rem;
+        margin-bottom: 20px;
+        font-size: 16px;
+        transition: border-color 0.3s;
         
-        @media (max-width: $breakpoint-mobile) {
-            padding: 10px;
+        &:focus {
+            border-color: $secondary-color;
+            outline: none;
+            box-shadow: 0 0 0 2px rgba($secondary-color, 0.2);
         }
     }
     
     button {
-        background-color: $primary-color;
+        @include elegant-button;
+        background: $primary-gradient;
         color: white;
-        border: none;
-        padding: 12px 15px;
-        border-radius: 6px;
-        cursor: pointer;
-        font-size: 1rem;
         width: 100%;
-        transition: all 0.3s ease;
-        
-        &:hover {
-            background-color: darken($primary-color, 10%);
-            transform: translateY(-2px);
-        }
-        
-        &:active {
-            transform: translateY(0);
-        }
-        
-        @media (max-width: $breakpoint-mobile) {
-            padding: 10px;
-        }
+        font-weight: 600;
     }
 }
 
@@ -126,9 +134,10 @@ h1 {
     display: none;
     
     .course-input {
-        margin-bottom: 20px;
-        padding-bottom: 20px;
-        border-bottom: 1px solid #eee;
+        margin-bottom: 5px;
+        padding-bottom: 25px;
+        border-bottom: 1px solid $border-color;
+      
         
         &:last-child {
             border-bottom: none;
@@ -138,11 +147,17 @@ h1 {
         
         h3 {
             margin-top: 0;
-            color: $dark-color;
-            font-size: 1.3rem;
+            color: $primary-color;
+            font-weight: 400;
+            font-size: 1.rem;
+            display: flex;
+            align-items: center;
             
-            @media (max-width: $breakpoint-mobile) {
-                font-size: 1.1rem;
+            &:before {
+                content: '•';
+                color: $secondary-color;
+                margin-right: 10px;
+                font-size: 1.8rem;
             }
         }
         
@@ -150,13 +165,9 @@ h1 {
             display: flex;
             gap: 20px;
             
-            @media (max-width: $breakpoint-tablet) {
-                gap: 15px;
-            }
-            
-            @media (max-width: $breakpoint-mobile) {
+            @media (max-width: 600px) {
                 flex-direction: column;
-                gap: 10px;
+                gap: 15px;
             }
         }
         
@@ -166,37 +177,31 @@ h1 {
             label {
                 display: block;
                 margin-bottom: 8px;
-                font-size: 0.95rem;
-                
-                @media (max-width: $breakpoint-mobile) {
-                    margin-bottom: 5px;
-                }
+                font-size: 14px;
+                color: lighten($text-color, 30%);
             }
             
             input, select {
                 width: 100%;
-                padding: 10px;
-                border: 1px solid #ddd;
+                padding: 12px;
+                border: 1px solid $border-color;
                 border-radius: 6px;
-                font-size: 1rem;
-                transition: border-color 0.3s;
+                font-size: 15px;
+                background: white;
+                transition: all 0.3s;
                 
                 &:focus {
-                    border-color: $primary-color;
-                    outline: none;
-                }
-                
-                @media (max-width: $breakpoint-mobile) {
-                    padding: 8px;
+                    border-color: $secondary-color;
+                    box-shadow: 0 0 0 2px rgba($secondary-color, 0.2);
                 }
             }
             
             select {
                 appearance: none;
-                background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+                background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23333' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
                 background-repeat: no-repeat;
-                background-position: right 10px center;
-                background-size: 1em;
+                background-position: right 12px center;
+                background-size: 14px;
             }
         }
     }
@@ -204,31 +209,29 @@ h1 {
 
 // Calculate Button
 .calculate-btn {
+    @include elegant-button;
     display: none;
-    background-color: $secondary-color;
+    background: $secondary-gradient;
     color: white;
-    border: none;
-    padding: 15px 20px;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 1.1rem;
     width: 100%;
-    margin: 25px 0;
-    transition: all 0.3s ease;
+    margin: 30px 0;
+    font-weight: 600;
+    position: relative;
+    overflow: hidden;
     
-    &:hover {
-        background-color: darken($secondary-color, 10%);
-        transform: translateY(-2px);
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    &:after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+        transition: 0.5s;
     }
     
-    &:active {
-        transform: translateY(0);
-    }
-    
-    @media (max-width: $breakpoint-mobile) {
-        padding: 12px;
-        font-size: 1rem;
+    &:hover:after {
+        left: 100%;
     }
 }
 
@@ -237,42 +240,40 @@ h1 {
     @include card-style;
     display: none;
     text-align: center;
-    animation: fadeIn 0.5s ease-out;
+    animation: fadeIn 0.6s ease-out;
     
     h2 {
         margin-top: 0;
-        color: $dark-color;
-        font-size: 1.5rem;
-        
-        @media (max-width: $breakpoint-mobile) {
-            font-size: 1.3rem;
-        }
+        color: $primary-color;
+        font-weight: 300;
+        font-size: 1.8rem;
     }
     
     .gpa-value {
         font-size: 3.5rem;
-        font-weight: bold;
-        color: $primary-color;
-        margin: 20px 0;
-        animation: bounce 0.5s ease;
+        font-weight: 300;
+        color: $secondary-color;
+        margin: 25px 0;
+        position: relative;
+        display: inline-block;
         
-        @media (max-width: $breakpoint-tablet) {
-            font-size: 3rem;
-        }
-        
-        @media (max-width: $breakpoint-mobile) {
-            font-size: 2.5rem;
+        &:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 2px;
+            background: $secondary-color;
         }
     }
     
     .grade-info {
-        font-size: 1.2rem;
-        color: $dark-color;
-        margin-bottom: 10px;
-        
-        @media (max-width: $breakpoint-mobile) {
-            font-size: 1.1rem;
-        }
+        font-size: 1.1rem;
+        color: lighten($text-color, 20%);
+        font-style: italic;
+        margin-top: 10px;
     }
 }
 
@@ -282,22 +283,17 @@ h1 {
     to { opacity: 1; transform: translateY(0); }
 }
 
-@keyframes bounce {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.1); }
-}
-
-// Utility classes
-.hidden-mobile {
-    @media (max-width: $breakpoint-mobile) {
-        display: none !important;
+// Responsive Adjustments
+@media (max-width: 768px) {
+    .container {
+        padding: 30px 15px;
     }
-}
-
-.visible-mobile {
-    display: none !important;
     
-    @media (max-width: $breakpoint-mobile) {
-        display: block !important;
+    h1 {
+        font-size: 2rem;
+    }
+    
+    .input-section, .courses-form {
+        padding: 20px;
     }
 }
