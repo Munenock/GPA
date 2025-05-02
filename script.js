@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', function() {
             courseDiv.className = 'course-input';
             
             courseDiv.innerHTML = `
-                <h3>Course Unit${i}</h3>
+                <h3>Course Unit ${i}</h3>
                 <div class="input-group">
                     <div class="form-control">
                         <label for="course-grade-${i}">Grade</label>
