@@ -5,14 +5,18 @@ document.addEventListener('DOMContentLoaded', function() {
     const calculateBtn = document.getElementById('calculate-btn');
     const resultDiv = document.getElementById('result');
 
-
+    // Updated grade point values (A-F with 5-0 scale)
     const gradePoints = {
-        'A': 5,
-        'B': 4,
-        'C': 3,
-        'D': 2,
-        'E': 1,
-        'F': 0
+        'A': 5.0,    // 80-100%
+        'B+': 4.5,   // 75-79%
+        'B': 4.0,    // 70-74%
+        'C+': 3.5,   // 65-69%
+        'C': 3.0,    // 60-64%
+        'D+': 2.5,   // 55-59%
+        'D': 2.0,    // 50-54%
+        'E': 1.5,    // 45-49%
+        'E-': 1.0,   // 40-44%
+        'F': 0.0     // Below 40%
     };
 
     // Generate course input fields
